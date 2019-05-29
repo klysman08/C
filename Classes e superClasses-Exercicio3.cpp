@@ -1,3 +1,6 @@
+/**Nome: Klysman Rezende Alves Vieira
+   Matricula: 2017108779 **/
+
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
@@ -10,13 +13,16 @@ class Point {
     float y;
 
 public:
-    /**Construtores*/
+
+    //Construtores da classe Point
+
     void setCoordenadas (float x, float y){
         this->x = x;
         this->y = y;
     }
 
-    /**Métodos*/
+    //Metodos da classe Point
+
     float getx(){
         return x;
     }
@@ -29,18 +35,24 @@ public:
 };
 
 class Triangulo: public Point {
- // Atributos lados do triangulo
+
+    //Atributos lados do triangulo
+
     int ladoA;
     int ladoB;
     int ladoC;
 
     public:
 
+    //Construtores da classe Triangulo
+
     Triangulo(int a, int b, int c) {
         this->ladoA = a;
         this->ladoB = b;
         this->ladoC = c;
     }
+
+    //Metodos da classe Triangulo
 
     int calcula_perimetro(){
         return ladoA + ladoB + ladoC;
@@ -63,63 +75,75 @@ class Triangulo: public Point {
 
 
 class Circle: public Point {
- // variáveis de instancia privadas, isto é, não acessíveis de fora desta classe.
+
+    //variáveis de instancia privadas, isto é, não acessíveis de fora desta classe.
+
     double radius;
     string color;
     double comprimento;
 
 
     public:
-// primeiro construtor o qual atribui valores iniciais a ambos: radius e color .
 
-
+    //Primeiro construtor o qual atribui valores iniciais a ambos: radius, color e comprimento.
 
     Circle( ) {
         this->radius = 1.0;
         this->color = "red";
     }
 
- // Segundo construtor que inicia radius com o parâmetro recebido, e matem color com
- // o valor padrão definido.
+    //Segundo construtor que inicia radius com o parâmetro recebido, e matem color com o valor padrão definido.
 
     Circle(double r) {
         this->radius = r;
         this->color = "red";
     }
 
-    Circle(double o, string c) {
-        this->radius = o;
+    //Terceiro construtor que inicia radius e color recebidos.
+
+    Circle(double r, string c) {
+        this->radius = r;
         this->color = c;
     }
 
+    //Quarto construtor que inicia radius padrão e recebe e color do int main.
 
     Circle(string c) {
         this->radius = 1.0;
         this->color = c;
     }
 
- // Metodo de acesso para obter o valor armazenado em radius
+    //Metodo de acesso para obter o valor armazenado em radius
 
     double getRadius() {
         return radius;
     }
- // Metodo de acesso para computar a área de um circulo.
+
+    //Metodo de acesso para computar a área de um circulo.
 
     double getArea() {
         return radius*radius*M_PI; //M_PI está definida no arquivo <math.h>
     }
 
+    //Metodo de acesso para saber a cor.
+
     string getColor() {
         return color;
     }
+
+    //Metodo para alterar o valor do radius
 
     void setRadius(double radius) {
         this->radius = radius;
     }
 
+    //Metodo para alterar o valor de color
+
     void setColor(string color) {
         this->color = color;
     }
+
+    //Metodo de acesso para saber o calculo do comprimento
 
     double getComprimento() {
         return radius*2*M_PI;
@@ -136,31 +160,29 @@ class Circle: public Point {
 int main( ) {
 
 
- // Declara c1 como variável habilitada a armazenar uma referencia para objeto da classe Circle.
-    Circle *c1;
- // atribui a c1 .a referencia retornada pelo construtor padrão Circle ()
+    // Declara c1 como variável habilitada a armazenar uma referencia para objeto da classe Circle.
 
+    Circle *c1;
+
+    // Atribui a c1 .a referencia retornada pelo construtor padrão Circle ()
 
     c1 = new Circle();
 
 
- // Para invocar os metodos classe Circle para operar sobre a instância c1,
- // usa-se o operador ponto (“.”).
- // Em outras palavras: usa-se o ponto para enviar uma mensagem ao objeto c1 para que
- // ele execute um de seus métodos.
+     // Para invocar os metodos classe Circle para operar sobre a instância c1, usa-se o operador ponto (“.”).
+     // Em outras palavras: usa-se o ponto para enviar uma mensagem ao objeto c1 para que ele execute um de seus métodos.
 
     cout << "O circulo tem o raio de " << c1->getRadius() << ", area de " << c1->getArea() << " e comprimento de " << c1->getComprimento();
 
 
- // Declara e aloca uma segunda instancia da classe Circle chamada c2
- // com o valor do radius igual a 2.0 e color com valor padrão.
-
+     // Declara e aloca uma segunda instancia da classe Circle chamada c2 com o valor do radius igual a 2.0 e color com valor padrão.
 
     Circle * c2 = new Circle(2.0);
 
     //c2->setRadius(5.0);
     //c2->setColor("green");
- // Para invocar os metodos a operar sobre a instância c2, usa-se o operador ponto (“.”)
+
+    //Para invocar os metodos a operar sobre a instância c2, usa-se o operador ponto (“.”)
 
 
     cout << "\nO circulo tem raio de " << c2->getRadius() << ", area de " << c2->getArea() << " e comprimento de " << c2->getComprimento();
@@ -180,7 +202,6 @@ int main( ) {
 
     //DESAFIO 3 (TRIANGULO, POINT)
 
-
     int x, y, z; // recebendo os lados do triangulo do usuario
     cout << "\ninsira os lados do triangulo\n ";
     cin >> x >> y >> z;
@@ -193,12 +214,4 @@ int main( ) {
         cout << "/nArea do triangulo: /n" << T1->calcula_area();
         T1->tipo_triangulo();
     }
-
-
-
  }
-
- //#Item 4 = privado nao dara certo
- //#Consigo alterar o valor do atributo do objeto
- //#7 - criar um metodo privado antes do public para o objeto comprimento
- //#Criar um metodo para converter tudo em string ToString

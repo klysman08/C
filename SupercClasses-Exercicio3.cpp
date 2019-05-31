@@ -13,9 +13,11 @@ using namespace std;
 class Point {
     float x;
     float y;
+    
+
 
 public:
-
+		
     //Construtores da classe Point
 
     void setCoordenadas (float x, float y){
@@ -33,7 +35,6 @@ public:
         return y;
     }
 
-    //toString()
 };
 
 class Triangulo: public Point {
@@ -62,17 +63,46 @@ class Triangulo: public Point {
 
     int calcula_area(){
         float p = (ladoA + ladoB + ladoC)/2;
-        return (sqrt((p*(p-ladoA)*(p-ladoB)*(p-ladoC)))); //fórmula para calcular a área
+        return (sqrt((p*((p-ladoA)*(p-ladoB)*(p-ladoC))))); //fórmula para calcular a área
+        
+        
     }
+    
+    float angulo1(){
+    	return acos((ladoA*ladoA) - ((ladoB*ladoB) + (ladoC*ladoC)))/(-2*ladoB*ladoC);
+	}
+	float angulo2(){
+		return acos((ladoB*ladoB) - ((ladoA*ladoA) + (ladoC*ladoC)))/(-2*ladoA*ladoC);
+	}
+	float angulo3(){
+		return acos((ladoC*ladoC) - ((ladoB*ladoB) + (ladoA*ladoA)))/(-2*ladoB*ladoA);
+	}
 
-    void tipo_triangulo(){
-        if (ladoA == ladoB && ladoA == ladoC)
+    string tipo_triangulo(){
+    	char n[20];
+        if (ladoA == ladoB && ladoA == ladoC){
+        	int a = sprintf(n, "Equilatero");
             cout << " O triangulo e equilatero. ";
-        else if ((ladoA == ladoB && ladoA != ladoC) || (ladoA == ladoC && ladoA != ladoB) || (ladoB == ladoC && ladoB != ladoA))
-            cout << " O triangulo e isosceles. ";
-        else
+    	}
+        else if ((ladoA == ladoB && ladoA != ladoC) || (ladoA == ladoC && ladoA != ladoB) || (ladoB == ladoC && ladoB != ladoA)){
+            int a = sprintf(n, "Isosceles");
+			cout << " O triangulo e isosceles. ";
+		}
+        else{
+        	int a = sprintf(n, "Escaleno");
             cout << " O triangulo e escaleno. ";
+    	}
+        return string(n);
     }
+    
+    string toString() {
+		char buffer[500];
+		//Não está sendo possível fazer a chamada das funções publicas dentro do Sprintf abaixo.
+		//Colocando a formula direto na chamada funciona mas quando chama a função printa Zero.
+	    int n = sprintf(buffer,"Lados do Triangulo: A = %d || B = %d || C = %d || Area = %6.2f ||  Ang1 = %6.2f || Ang2 = %6.2f || Ang3 = %6.2f", this->ladoA, this->ladoB, this->ladoC, (sqrt((((ladoA + ladoB + ladoC)/2)*((((ladoA + ladoB + ladoC)/2)-ladoA)*(((ladoA + ladoB + ladoC)/2)-ladoB)*(((ladoA + ladoB + ladoC)/2)-ladoC))))), angulo1(), angulo2(), angulo3());
+		return string(buffer);
+	}
+    
 };
 
 
@@ -80,6 +110,8 @@ class Circle: public Point {
 
     //variáveis de instancia privadas, isto é, não acessíveis de fora desta classe.
 
+		
+		
     double radius;
     string color;
     double comprimento;
@@ -114,6 +146,10 @@ class Circle: public Point {
         this->radius = 1.0;
         this->color = c;
     }
+    
+    Roda(){
+    	this->comprimento = 9.9;
+	}
 
     //Metodo de acesso para obter o valor armazenado em radius
 
@@ -152,8 +188,8 @@ class Circle: public Point {
     }
 
     string toString() {
-        char buffer[50];
-        int n = sprintf(buffer,"Circulo: raio = %6.2f  cor = %s", this->radius, this->color.c_str());
+    	char buffer[50];
+        int n = sprintf(buffer,"Circulo: raio = %6.2f || Cor = %s || Area = %6.2f ", this->radius, this->color.c_str(), getArea());
         return string(buffer);
     }
 };
@@ -162,16 +198,18 @@ class Circle: public Point {
 int main( ) {
 
 
-    // Declara c1 como variável habilitada a armazenar uma referencia para objeto da classe Circle.
+    
 
-    Circle *c1;
+  
+    
+    // Circle *c1;   // Declara c1 como variável habilitada a armazenar uma referencia para objeto da classe Circle.
+    //c1 = new Circle();  // Atribui a c1 .a referencia retornada pelo construtor padrão Circle ()
 
-    // Atribui a c1 .a referencia retornada pelo construtor padrão Circle ()
+   	// Ou dessa forma para instaciar um novo objeto tipo Circle ->
+    Circle *c1 = new Circle();
 
-    c1 = new Circle();
-
-     // Para invocar os metodos classe Circle para operar sobre a instância c1, usa-se o operador ponto (“.”).
-     // Em outras palavras: usa-se o ponto para enviar uma mensagem ao objeto c1 para que ele execute um de seus métodos.
+    // Para invocar os metodos classe Circle para operar sobre a instância c1, usa-se o operador ponto (“.”).
+    // Em outras palavras: usa-se o ponto para enviar uma mensagem ao objeto c1 para que ele execute um de seus métodos.
 
     cout << "O circulo tem o raio de " << c1->getRadius() << ", area de " << c1->getArea() << " e comprimento de " << c1->getComprimento();
 
@@ -189,7 +227,7 @@ int main( ) {
     cout << "\nO circulo tem raio de " << c2->getRadius() << ", area de " << c2->getArea() << " e comprimento de " << c2->getComprimento();
 
 
-    Circle * c3 = new Circle(2.0, "verde");
+    Circle * c3 = new Circle(4.0, "verde");
     cout << "\nO circulo tem raio de " << c3->getRadius() << ", area de " << c3->getArea() << " e cor " << c3->getColor() << " e comprimento de " << c3->getComprimento();
 
     c3->setColor("Cinza");
@@ -197,10 +235,13 @@ int main( ) {
 
     cout << "\n\n\n AQUI ESTA O TOSTRING  " << c3->toString() << "\n\n\n";
 
+
+	
+
     c3->setCoordenadas(5.0, 3.0);
 
     cout << "\n Coordenada x e: " << c3->getx() << "\n Coordenada y e: " << c3->gety();
-
+	
 
     //DESAFIO 3 (TRIANGULO, POINT)
 
@@ -215,6 +256,7 @@ int main( ) {
         cout << "\n Perimetro do triangulo: " << T1->calcula_perimetro();
         cout << "\n Area do triangulo: " << T1->calcula_area() << "\n";
         T1->tipo_triangulo();
+        cout << T1->toString();
     }
  }
  

@@ -63,7 +63,7 @@ class Triangulo: public Point {
 
     int calcula_area(){
         float p = (ladoA + ladoB + ladoC)/2;
-        return (sqrt((p*((p-ladoA)*(p-ladoB)*(p-ladoC))))); //fÛrmula para calcular a ·rea
+        return (sqrt((p*((p-ladoA)*(p-ladoB)*(p-ladoC))))); //f√≥rmula para calcular a √°rea
         
         
     }
@@ -98,8 +98,10 @@ class Triangulo: public Point {
     string toString() {
 		char buffer[500]; 
 		
-		//N„o est· sendo possÌvel fazer a chamada das funÁıes publicas dentro do Sprintf abaixo.
-		//Colocando a formula direto na chamada funciona mas quando chama a funÁ„o printa Zero.
+		 /** N√£o est√° sendo poss√≠vel fazer a chamada das fun√ß√µes publicas dentro do Sprintf abaixo.
+		     Colocando a formula direto na chamada funciona mas quando chama a fun√ß√£o √© exibido Zero.
+	    	     Ao chamar o calculo dos angulos √© exibido na tela (nan)
+	     	**/
 	    
 		int n = sprintf(buffer,"Lados do Triangulo: A = %d || B = %d || C = %d || Area = %6.2f ||  Ang1 = %6.2f || Ang2 = %6.2f || Ang3 = %6.2f", this->ladoA, this->ladoB, this->ladoC, (sqrt((((ladoA + ladoB + ladoC)/2)*((((ladoA + ladoB + ladoC)/2)-ladoA)*(((ladoA + ladoB + ladoC)/2)-ladoB)*(((ladoA + ladoB + ladoC)/2)-ladoC))))), angulo1(), angulo2(), angulo3());
 		return string(buffer);
@@ -110,7 +112,7 @@ class Triangulo: public Point {
 
 class Circle: public Point {
 
-    //vari·veis de instancia privadas, isto È, n„o acessÌveis de fora desta classe.
+    //vari√°veis de instancia privadas, isto √©, n√£o acess√≠veis de fora desta classe.
 		
 		
     double radius;
@@ -127,7 +129,7 @@ class Circle: public Point {
         this->color = "red";
     }
 
-    //Segundo construtor que inicia radius com o par‚metro recebido, e matem color com o valor padr„o definido.
+    //Segundo construtor que inicia radius com o par√¢metro recebido, e matem color com o valor padr√£o definido.
 
     Circle(double r) {
         this->radius = r;
@@ -141,7 +143,7 @@ class Circle: public Point {
         this->color = c;
     }
 
-    //Quarto construtor que inicia radius padr„o e recebe e color do int main.
+    //Quarto construtor que inicia radius padr√£o e recebe e color do int main.
 
     Circle(string c) {
         this->radius = 1.0;
@@ -155,10 +157,10 @@ class Circle: public Point {
         return radius;
     }
 
-    //Metodo de acesso para computar a ·rea de um circulo.
+    //Metodo de acesso para computar a √°rea de um circulo.
 
     double getArea() {
-        return radius*radius*M_PI; //M_PI est· definida no arquivo <math.h>
+        return radius*radius*M_PI; //M_PI est√° definida no arquivo <math.h>
     }
 
     //Metodo de acesso para saber a cor.
@@ -197,28 +199,28 @@ class Circle: public Point {
 int main( ) {
 
     
-    // Circle *c1;   		// Declara c1 como vari·vel habilitada a armazenar uma referencia para objeto da classe Circle.
-    // c1 = new Circle();   // Atribui a c1 .a referencia retornada pelo construtor padr„o Circle ()
+    // Circle *c1;   		// Declara c1 como vari√°vel habilitada a armazenar uma referencia para objeto da classe Circle.
+    // c1 = new Circle();   // Atribui a c1 .a referencia retornada pelo construtor padr√£o Circle ()
 
    	// Ou dessa forma para instaciar um novo objeto tipo Circle ->
     Circle *c1 = new Circle();
 
-    // Para invocar os metodos classe Circle para operar sobre a inst‚ncia c1, usa-se o operador ponto (ì.î).
-    // Em outras palavras: usa-se o ponto para enviar uma mensagem ao objeto c1 para que ele execute um de seus mÈtodos.
+    // Para invocar os metodos classe Circle para operar sobre a inst√¢ncia c1, usa-se o operador ponto (‚Äú.‚Äù).
+    // Em outras palavras: usa-se o ponto para enviar uma mensagem ao objeto c1 para que ele execute um de seus m√©todos.
 	
 	
 	cout << "\n\n\nInstanciando os objetos c1 c2 c3 \n\n";
     cout << "O circulo tem o raio de " << c1->getRadius() << ", area de " << c1->getArea() << " e comprimento de " << c1->getComprimento();
 
 
-     //Declara e aloca uma segunda instancia da classe Circle chamada c2 com o valor do radius igual a 2.0 e color com valor padr„o.
+     //Declara e aloca uma segunda instancia da classe Circle chamada c2 com o valor do radius igual a 2.0 e color com valor padr√£o.
 
     Circle * c2 = new Circle(2.0);
 
     //c2->setRadius(5.0);
     //c2->setColor("green");
 
-    //Para invocar os metodos a operar sobre a inst‚ncia c2, usa-se o operador ponto (ì.î)
+    //Para invocar os metodos a operar sobre a inst√¢ncia c2, usa-se o operador ponto (‚Äú.‚Äù)
 	cout << "\nO circulo tem raio de " << c2->getRadius() << ", area de " << c2->getArea() << " e comprimento de " << c2->getComprimento();
 
 	//Criando um novo Circle passando atributo de raio e cor
@@ -229,7 +231,7 @@ int main( ) {
     c3->setColor("Cinza");
     
     
-    cout << "\n\n\nApos modificar os valores com a funÁ„o c3->setColor: \nO circulo tem raio de  " << c3->getRadius() << ", area de " << c3->getArea() << ", cor " << c3->getColor() << " e comprimento de " << c3->getComprimento();
+    cout << "\n\n\nApos modificar os valores com a fun√ß√£o c3->setColor: \nO circulo tem raio de  " << c3->getRadius() << ", area de " << c3->getArea() << ", cor " << c3->getColor() << " e comprimento de " << c3->getComprimento();
     
     //Chamada para o metodo ToString de Circle
 	cout << "\n\n\n====================================== \n";
@@ -245,12 +247,12 @@ int main( ) {
     cout << "\n Coordenada x e: " << c3->getx() << "\n Coordenada y e: " << c3->gety();
 	
 
-    //Desafio 3 - Recebendo do usuario os lados do triangulo e validando se È lados de tringulo
+    //Desafio 3 - Recebendo do usuario os lados do triangulo e validando se √© lados de tringulo
     int x, y, z; 
     cout << "insira os lados do triangulo \n ";
     cin >> x >> y >> z ;
     if ( (x + y < z) || (x + z < y) || (y + z < x)){
-            cout << "N„o pode formar um triangulo";
+            cout << "N√£o pode formar um triangulo";
         }
     else{
         Triangulo *T1 = new Triangulo(x, y, z);

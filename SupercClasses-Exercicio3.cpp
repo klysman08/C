@@ -6,6 +6,7 @@
 #include <string.h>
 #include <math.h>
 
+
 using namespace std;
 
 
@@ -152,7 +153,7 @@ class Circle: public Point {
 
     string toString() {
         char buffer[50];
-        int n = sprintf(buffer,"Circulo: raio = %d  cor = %s", radius, color.c_str());
+        int n = sprintf(buffer,"Circulo: raio = %6.2f  cor = %s", this->radius, this->color.c_str());
         return string(buffer);
     }
 };
@@ -194,25 +195,27 @@ int main( ) {
     c3->setColor("Cinza");
     cout << "\nApos modificar os valores : O circulo tem raio de " << c3->getRadius() << ", area de " << c3->getArea() << ", cor " << c3->getColor() << " e comprimento de " << c3->getComprimento();
 
-    //cout << "\n\n\n" << c3->toString() << "\n\n\n";
+    cout << "\n\n\n AQUI ESTA O TOSTRING  " << c3->toString() << "\n\n\n";
 
     c3->setCoordenadas(5.0, 3.0);
 
-    cout << "\nCoordenada x e: " << c3->getx() << "\nCoordenada y e: " << c3->gety();
+    cout << "\n Coordenada x e: " << c3->getx() << "\n Coordenada y e: " << c3->gety();
 
 
     //DESAFIO 3 (TRIANGULO, POINT)
 
     int x, y, z; // recebendo os lados do triangulo do usuario
-    cout << "\ninsira os lados do triangulo\n ";
-    cin >> x >> y >> z;
+    cout << "\n insira os lados do triangulo \n ";
+    cin >> x >> y >> z ;
     if ( (x + y < z) || (x + z < y) || (y + z < x)){
-            cout << "Não pode formar um triangulo";
+            cout << " Não pode formar um triangulo";
         }
     else{
         Triangulo *T1 = new Triangulo(x, y, z);
-        cout << "/nPerimetro do triangulo: " << T1->calcula_perimetro();
-        cout << "/nArea do triangulo: /n" << T1->calcula_area();
+        cout << "\n Perimetro do triangulo: " << T1->calcula_perimetro();
+        cout << "\n Area do triangulo: " << T1->calcula_area() << "\n";
         T1->tipo_triangulo();
     }
  }
+ 
+ 

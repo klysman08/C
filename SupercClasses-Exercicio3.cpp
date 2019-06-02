@@ -1,5 +1,6 @@
 /**Nome: Klysman Rezende Alves Vieira
-   Matricula: 2017108779 **/
+   Matricula: 2017108779 
+   Exercicio 3 - Classes e Superclasses **/
 
 #include <iostream>
 #include <stdio.h>

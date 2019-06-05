@@ -15,15 +15,14 @@ class Point
     float y;
 
 public:
-    //Construtores da classe Point
 
+    //Metodos da classe Point
+    
     void setCoordenadas(float x, float y)
     {
         this->x = x;
         this->y = y;
     }
-
-    //Metodos da classe Point
 
     float getx()
     {

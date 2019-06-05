@@ -1,6 +1,6 @@
 /**Nome: Klysman Rezende Alves Vieira
    Matricula: 2017108779
-   Exercicio 3 - Classes e Superclasses **/
+   Exercicio 4 - UML e cÃ³digo  **/
 
 #include <iostream>
 #include <stdio.h>
@@ -98,7 +98,7 @@ class Cliente : public Publicacoes
 		}
 
 
-	void setCodigo () // função para gerar codído ao cliente
+	void setCodigo () // funï¿½ï¿½o para gerar codï¿½do ao cliente
 	{
 		int num;
 		num = 100+rand() % 499 + rand() % 400;
@@ -137,10 +137,10 @@ class Cliente : public Publicacoes
 
 int main(int argc, char** argv)
 {
-	int i; // será usada no for para quantidade de assinaturas que o cliente desejou;
+	int i; // serï¿½ usada no for para quantidade de assinaturas que o cliente desejou;
 	string publicacao; // para armaznenar o nome da assinatura;
-	int edicoes; //numero de semanas que a publicação será enviada
-	int assinaturas; //quantidade da mesma publicação a ser recebida
+	int edicoes; //numero de semanas que a publicaï¿½ï¿½o serï¿½ enviada
+	int assinaturas; //quantidade da mesma publicaï¿½ï¿½o a ser recebida
 	string nome;
 	int idade;
 	string endereco;

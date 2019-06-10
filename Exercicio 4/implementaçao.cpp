@@ -1,6 +1,6 @@
 /**Nome: Klysman Rezende Alves Vieira
    Matricula: 2017108779
-   Exercicio 4 - UML e código  **/
+   Exercicio 4 - UML e codigo  **/
 
 #include <iostream>
 #include <stdio.h>
@@ -11,8 +11,8 @@
 using namespace std;
 
 
-//////////////////////// Classe Editora
-//////////////////////// Valores padrões. Trata-se de uma unica editora
+// Classe Editora
+// Valores padroes. Trata-se de uma unica editora
 
 class Editora
 {
@@ -27,7 +27,7 @@ public:
         this->nome_ed = "DCC";
         this->endereco_ed = "UFMG";
         this->quantPublicacoes_ed = 5;
-        this->cnpj_ed = 123456789; /**Aqui também*/
+        this->cnpj_ed = 123456789; /**Aqui tambem*/
     }
 
     string getnome()
@@ -45,8 +45,8 @@ public:
         return quantPublicacoes_ed;
     }
 
-    /**Já que tem um campo para o cnpj, deve ser util ter um método para ler o cnpj. Nao fiz um para definir o cnpj pq imagino q isso vai ser
-       padrão e determinado no início do programa*/
+    /**Ja que tem um campo para o cnpj, deve ser util ter um metodo para ler o cnpj. Nao fiz um para definir o cnpj pq imagino q isso vai ser
+       padroo e determinado no inicio do programa*/
     int getcnpj()
     {
         return cnpj_ed;
@@ -55,21 +55,19 @@ public:
 
 
 
-//////////////////////// Classe que armazena as publicações desejadas pelo Usuario.
-//////////////////////// Tem como construtores publicação padrão e outra que recebe os parametros (informacoes da publicacao) do usuario.
+// Classe que armazena as publicaÃ§oes desejadas pelo Usuario.
+// Tem como construtores publicaÃ§oes padrao e outra que recebe os parametros (informacoes da publicacao) do usuario.
 
-/** Além disso a classe publicação deveria ficar da seguinte maneira:
-*/
-class Publicacoes2
+class Publicacoes
 {
     string nome_pub;
     int edicao_atual;
-    string periodicidade; //se é mensal ou semanal
+    string periodicidade; //se Ã© mensal ou semanal
     int data_ultima_ed; //Isso tem que ser data, mas nao consigo compilar com data
 
 public:
 
-    Publicacoes2()
+    Publicacoes()
     {
         this->nome_pub = "Tecnologia";
         this->edicao_atual = 1;
@@ -77,7 +75,7 @@ public:
         this->data_ultima_ed = 0606201;
     }
 
-    Publicacoes2(string nome, int edicao, string periodicidade, int data_ultima_ed)
+    Publicacoes(string nome, int edicao, string periodicidade, int data_ultima_ed)
     {
         this->nome_pub = nome;
         this->edicao_atual = edicao;
@@ -94,7 +92,7 @@ public:
         this->data_ultima_ed = data_ed;
     }
 
-    void listar_campos() // essa funcao não está sendo chamada. não consigo identificar o problema dessa sintaxe
+    void listar_campos() // essa funcao nao esta sendo chamada. nao consigo identificar o problema dessa sintaxe
     {
         cout<< "\nNome da publicacao: " << this->nome_pub << "\nEdicao atual: " << this->edicao_atual << "\nPeriodicidade: " << this->periodicidade << "\nData da ultima edicao: " << this->data_ultima_ed << "\n";
     }
@@ -161,8 +159,9 @@ public:
 };
 */
 
-//////////////////////// Classe Cliente
-//////////////////////// Recebe as informacoes do usuario na funcao atualiza_cliente
+// Classe Cliente
+// Recebe as informacoes do usuario na funcao atualiza_cliente
+
 class Cliente
 {
 	string nome;
@@ -211,17 +210,17 @@ public:
         return endereco;
     }
 
-    /**Já que tem um campo cpf, é interessante ter um método pra pegar o cpf*/
+    /**Ja que tem um campo cpf, Ã© interessante ter um metodo pra pegar o cpf*/
     int getcpf()
     {
         return cpf;
     }
 };
 
-//////////////////////// Classe Assinatura
-//////////////////////// Recebe as informacoes do usuario na funcao atualiza_assiantura e set nos atributos
+// Classe Assinatura
+// Recebe as informacoes do usuario na funcao atualiza_assiantura e set nos atributos
 
-class Assinatura : public Cliente, public Publicacoes2
+class Assinatura : public Cliente, public Publicacoes
 {
     string revista;
     int ed_inicial;
@@ -258,11 +257,11 @@ public:
 
 };
 
-//////////////////////// Classe sistema
-//////////////////////// Responsavel por receber todas as informacoes do usario e criar os objetos das classes publicacoes, clientes e assinaturas.
+// Classe sistema
+// Responsavel por receber todas as informacoes do usario e criar os objetos das classes publicacoes, clientes e assinaturas.
 
 /**Aqui precisa ter uma classe Sistema de acordo com o slide (slide 21 da aula - Diagrama de classes).
-   Ela não possui atributos nem construtores, somente métodos. */
+   Ela nao possui atributos nem construtores, somente metodos. */
 
 class Sistema : public Editora, public Assinatura
 {
@@ -274,7 +273,7 @@ public:
     {
         string nome_pub;
         int edicao_atual;
-        string periodicidade; //se é mensal ou semanal
+        string periodicidade; //se e mensal ou semanal
         int data_ultima_ed; //Isso tem que ser data, mas nao consigo compilar com data
 
 
@@ -339,14 +338,16 @@ public:
 };
 
 
-//////////////////////// Programa principal para o usuario interagir
-//////////////////////// Chama as devidas funções para setar os valores informados pelo usario.
+// Programa principal para o usuario interagir
+// Chama as devidas funcoes para setar os valores informados pelo usario.
+
+
 int main(int argc, char** argv)
 {
     int escolha = 0;
     Sistema *s1 = new Sistema();
     Cliente *c1 = new Cliente();
-    Publicacoes2 *p1 = new Publicacoes2();
+    Publicacoes *p1 = new Publicacoes();
     Assinatura *a1 = new Assinatura();
 
     while(1)

@@ -175,7 +175,7 @@ public:
     {
         this->nome = "Klysman";
         this->idade = 22;
-        this->endereco = "UFMG"
+        this->endereco = "UFMG";
         this->cpf = 1232233234;
     }
 

@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+#include <vector>
 
 using namespace std;
 
@@ -164,12 +165,12 @@ public:
 
 class Cliente
 {
+
+public:
 	string nome;
 	int idade;
 	string endereco;
 	int cpf; /**De acordo com o slide precisa ter*/
-
-public:
 
     Cliente ()
     {
@@ -179,21 +180,21 @@ public:
         this->cpf = 1232233234;
     }
 
-    /*Cliente (string nome, int idade, string endereco, int cpf)
-    {
-        this->nome = nome;
-        this->idade = idade;
-        this->endereco = endereco;
-        this->cpf = cpf;
-    }*/
-
-    void atualiza_cliente(string nome, int idade, string endereco, int cpf)
+    Cliente (string nome, int idade, string endereco, int cpf)
     {
         this->nome = nome;
         this->idade = idade;
         this->endereco = endereco;
         this->cpf = cpf;
     }
+
+    /*void atualiza_cliente(string nome, int idade, string endereco, int cpf)
+    {
+        this->nome = nome;
+        this->idade = idade;
+        this->endereco = endereco;
+        this->cpf = cpf;
+    }*/
 
     string getnome()
     {
@@ -290,11 +291,9 @@ public:
         atualizar_campos(nome_pub, edicao_atual, periodicidade, data_ultima_ed);  //funcao que atualiza novos valores na classe correspondente
 
         cout << "\nOk! Seus dados foram armazenados. \n\n";
-
-
     }
 
-    void inscreverCliente()
+    Cliente inscreverCliente()
     {
         string nome;
         int idade;
@@ -311,10 +310,13 @@ public:
         cout << "Seu cpf: ";
         cin >> cpf;
 
-        atualiza_cliente(nome, idade, endereco, cpf); //funcao que atualiza novos valores na classe correspondente
-
+        Cliente *c1 = new Cliente(nome, idade, endereco, cpf);
+		//client.push_back(*c1);
+		//atualiza_cliente(nome, idade, endereco, cpf); //funcao que atualiza novos valores na classe correspondente
+		
         cout << "\nOk! Seus dados foram armazenados. \n\n";
-    }
+    	return *c1;
+	}
 
     void inscreverAssinatura()
     {
@@ -337,6 +339,16 @@ public:
     }
 };
 
+void imprime(const vector<Cliente> &lista)  //TENTAR DEUXAR DENTRO DE CADA CLASSE ESPECIFICA PARA QUE OS ATRIBUTOS NAO PRECISEM SER PUBLICOS
+{
+    for (int i = 0; i < lista.size(); ++i)
+    {
+        cout << lista[i].nome << endl;
+        cout << lista[i].idade << endl;
+        cout << lista[i].endereco << endl;
+        cout << lista[i].cpf << endl;
+    }
+}
 
 // Programa principal para o usuario interagir
 // Chama as devidas funcoes para setar os valores informados pelo usario.
@@ -349,6 +361,13 @@ int main(int argc, char** argv)
     Cliente *c1 = new Cliente();
     Publicacoes *p1 = new Publicacoes();
     Assinatura *a1 = new Assinatura();
+    
+    
+    vector<Cliente> client;
+    vector<Publicacoes> publica;
+    vector<Assinatura> assina;
+    
+    
 
     while(1)
 	{
@@ -358,7 +377,8 @@ int main(int argc, char** argv)
 
         if (escolha == 1)
         {
-            s1->inscreverCliente();
+            *c1 = s1->inscreverCliente();
+            client.push_back(*c1);
         }
         else if (escolha == 2)
         {
@@ -370,7 +390,7 @@ int main(int argc, char** argv)
         }
         else if (escolha == 4)
         {
-           cout<< c1->getnome() << "\n";
+           /*cout<< c1->getnome() << "\n";
            cout<< c1->getcpf() << "\n";
            cout<< c1->getidade() << "\n";
            cout<< c1->getendereco() << "\n";
@@ -378,7 +398,8 @@ int main(int argc, char** argv)
            cout<< p1->getedicao_atual() << "\n";
            cout<< p1->getperiodicidade() << "\n";
            cout<< p1->getdata_ultima_edicao() << "\n";
-
+			*/
+			imprime(client);
         }
         else if (escolha == 5)
         {

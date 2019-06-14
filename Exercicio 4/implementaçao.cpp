@@ -52,6 +52,13 @@ public:
     {
         return cnpj_ed;
     }
+    void imprime_editora()
+    {
+        cout << this->nome_ed << endl;
+        cout << this->endereco_ed << endl;
+        cout << this->quantPublicacoes_ed << endl;
+        cout << this->cnpj_ed << endl;
+    }
 };
 
 
@@ -120,6 +127,16 @@ public:
         return data_ultima_ed;
     }
 
+    void imprime_publicacao(const vector<Publicacoes> &lista_publicacao)  //TENTAR DEUXAR DENTRO DE CADA CLASSE ESPECIFICA PARA QUE OS ATRIBUTOS NAO PRECISEM SER PUBLICOS
+    {
+        for (int i = 0; i < lista_publicacao.size(); ++i)
+        {
+            cout << lista_publicacao[i].nome_pub << endl;
+            cout << lista_publicacao[i].edicao_atual << endl;
+            cout << lista_publicacao[i].periodicidade << endl;
+            cout << lista_publicacao[i].data_ultima_ed << endl;
+        }
+    }
 };
 
 
@@ -165,12 +182,12 @@ public:
 
 class Cliente
 {
-
-public:
 	string nome;
 	int idade;
 	string endereco;
 	int cpf; /**De acordo com o slide precisa ter*/
+public:
+
 
     Cliente ()
     {
@@ -216,6 +233,17 @@ public:
     {
         return cpf;
     }
+
+    void imprime_cliente(const vector<Cliente> &lista)  //TENTAR DEUXAR DENTRO DE CADA CLASSE ESPECIFICA PARA QUE OS ATRIBUTOS NAO PRECISEM SER PUBLICOS
+    {
+        for (int i = 0; i < lista.size(); ++i)
+        {
+            cout << lista[i].nome << endl;
+            cout << lista[i].idade << endl;
+            cout << lista[i].endereco << endl;
+            cout << lista[i].cpf << endl;
+        }
+    }
 };
 
 // Classe Assinatura
@@ -232,11 +260,13 @@ public:
 
     Assinatura ()
     {
+        this->revista = "Tecnologia";
         this->ed_inicial = 1;
         this->num_assinaturas = 1;
+        this->assinante = "klysman";
     }
 
-    void atualiza_assinatura(string revista, int ed_inicial, int num_assinaturas, string assinante)
+    Assinatura(string revista, int ed_inicial, int num_assinaturas, string assinante)
     {
         this->revista = revista;
         this->ed_inicial = ed_inicial;
@@ -255,6 +285,17 @@ public:
 
     }
 
+    void imprime_assinatura(const vector<Assinatura> &lista_assinatura)  //TENTAR DEUXAR DENTRO DE CADA CLASSE ESPECIFICA PARA QUE OS ATRIBUTOS NAO PRECISEM SER PUBLICOS
+    {
+        for (int i = 0; i < lista_assinatura.size(); ++i)
+        {
+            cout << lista_assinatura[i].revista << endl;
+            cout << lista_assinatura[i].ed_inicial << endl;
+            cout << lista_assinatura[i].num_assinaturas << endl;
+            cout << lista_assinatura[i].assinante << endl;
+        }
+    }
+
 
 };
 
@@ -270,7 +311,7 @@ class Sistema : public Editora, public Assinatura
 public:
 
 
-    void inscreverPublicacao()
+    Publicacoes inscreverPublicacao()
     {
         string nome_pub;
         int edicao_atual;
@@ -288,9 +329,13 @@ public:
         cout << "Data da ultima edicao (tudo junto, sem barra, por exemplo 09062019: ";
         cin >> data_ultima_ed;
 
-        atualizar_campos(nome_pub, edicao_atual, periodicidade, data_ultima_ed);  //funcao que atualiza novos valores na classe correspondente
+        //atualizar_campos(nome_pub, edicao_atual, periodicidade, data_ultima_ed);  //funcao que atualiza novos valores na classe correspondente
+
+        Publicacoes *p1 = new Publicacoes(nome_pub, edicao_atual, periodicidade, data_ultima_ed);
 
         cout << "\nOk! Seus dados foram armazenados. \n\n";
+
+        return *p1;
     }
 
     Cliente inscreverCliente()
@@ -313,12 +358,12 @@ public:
         Cliente *c1 = new Cliente(nome, idade, endereco, cpf);
 		//client.push_back(*c1);
 		//atualiza_cliente(nome, idade, endereco, cpf); //funcao que atualiza novos valores na classe correspondente
-		
+
         cout << "\nOk! Seus dados foram armazenados. \n\n";
     	return *c1;
 	}
 
-    void inscreverAssinatura()
+    Assinatura inscreverAssinatura()
     {
         string revista;
         int ed_inicial;
@@ -330,25 +375,17 @@ public:
         cin >> revista;
         cout << "Numero da edicao: ";
         cin >> ed_inicial;
-        cout << "Assinante: ";
-        cin >> assinante;
         cout << "Numero de assinaturas: ";
         cin >> num_assinaturas;
+        cout << "Assinante: ";
+        cin >> assinante;
 
-        atualiza_assinatura(revista, ed_inicial, num_assinaturas, assinante); //funcao que atualiza novos valores na classe correspondente
+        Assinatura *a1 = new Assinatura(revista, ed_inicial, num_assinaturas, assinante);
+
+        cout << "\nOk! Seus dados foram armazenados. \n\n";
+    	return *a1;
     }
 };
-
-void imprime(const vector<Cliente> &lista)  //TENTAR DEUXAR DENTRO DE CADA CLASSE ESPECIFICA PARA QUE OS ATRIBUTOS NAO PRECISEM SER PUBLICOS
-{
-    for (int i = 0; i < lista.size(); ++i)
-    {
-        cout << lista[i].nome << endl;
-        cout << lista[i].idade << endl;
-        cout << lista[i].endereco << endl;
-        cout << lista[i].cpf << endl;
-    }
-}
 
 // Programa principal para o usuario interagir
 // Chama as devidas funcoes para setar os valores informados pelo usario.
@@ -361,17 +398,15 @@ int main(int argc, char** argv)
     Cliente *c1 = new Cliente();
     Publicacoes *p1 = new Publicacoes();
     Assinatura *a1 = new Assinatura();
-    
-    
+    Editora *e1 = new Editora();
+
     vector<Cliente> client;
     vector<Publicacoes> publica;
     vector<Assinatura> assina;
-    
-    
 
     while(1)
 	{
-        cout << "Informe o que voce deseja. \n\n1 - Cadastrar cliente\n2 - Cadastrar publicacao\n3 - Cadastrar assinatura\n4 - Informacoes de cliente cadastrado\n5 - Sair do Programa\n\n";
+        cout << "Informe o que voce deseja. \n\n1 - Cadastrar cliente\n2 - Cadastrar publicacao\n3 - Cadastrar assinatura\n4 - Informacoes de cliente cadastrado\n5 - Informacoes de assinatura\n6 - Informacoes de publicacoes\n7 - Sair do Programa\n\n";
         cout << "Escolha: ";
         cin >> escolha;
 
@@ -382,26 +417,31 @@ int main(int argc, char** argv)
         }
         else if (escolha == 2)
         {
-            s1->inscreverPublicacao();
+            *p1 = s1->inscreverPublicacao();
+             publica.push_back(*p1);
         }
         else if (escolha == 3)
         {
-            s1->inscreverAssinatura();
+            *a1 = s1->inscreverAssinatura();
+            assina.push_back(*a1);
         }
         else if (escolha == 4)
         {
-           /*cout<< c1->getnome() << "\n";
-           cout<< c1->getcpf() << "\n";
-           cout<< c1->getidade() << "\n";
-           cout<< c1->getendereco() << "\n";
-           cout<< p1->getnome_pub() << "\n";
-           cout<< p1->getedicao_atual() << "\n";
-           cout<< p1->getperiodicidade() << "\n";
-           cout<< p1->getdata_ultima_edicao() << "\n";
-			*/
-			imprime(client);
+			c1->imprime_cliente(client);
         }
         else if (escolha == 5)
+        {
+			a1->imprime_assinatura(assina);
+        }
+        else if (escolha == 6)
+        {
+            p1->imprime_publicacao(publica);
+        }
+        else if (escolha == 7)
+        {
+			e1->imprime_editora;
+        }
+        else if (escolha == 8)
         {
             cout << "Saindo do programa. Obrigado por utilizar o sistema. ";
             break;

@@ -80,7 +80,7 @@ public:
         this->nome_pub = "Tecnologia";
         this->edicao_atual = 1;
         this->periodicidade = "Periodicidade Semanal";
-        this->data_ultima_ed = 0606201;
+        this->data_ultima_ed = 606201;
     }
 
     Publicacoes(string nome, int edicao, string periodicidade, int data_ultima_ed)
@@ -131,10 +131,11 @@ public:
     {
         for (int i = 0; i < lista_publicacao.size(); ++i)
         {
-            cout << lista_publicacao[i].nome_pub << endl;
-            cout << lista_publicacao[i].edicao_atual << endl;
-            cout << lista_publicacao[i].periodicidade << endl;
-            cout << lista_publicacao[i].data_ultima_ed << endl;
+            cout << "Nome da publicacao: " << lista_publicacao[i].nome_pub << endl;
+            cout << "Edicao: " <<lista_publicacao[i].edicao_atual << endl;
+            cout << "Periodicidade: " << lista_publicacao[i].periodicidade << endl;
+            cout << "Data da ultima publicacao: " <<lista_publicacao[i].data_ultima_ed << endl;
+            cout << "\n====================================================\n";
         }
     }
 };
@@ -238,10 +239,12 @@ public:
     {
         for (int i = 0; i < lista.size(); ++i)
         {
-            cout << lista[i].nome << endl;
-            cout << lista[i].idade << endl;
-            cout << lista[i].endereco << endl;
-            cout << lista[i].cpf << endl;
+            cout << "Nome do Cliente: " << lista[i].nome << endl;
+            cout << "Idade: " << lista[i].idade << endl;
+            cout << "Endereco: " << lista[i].endereco << endl;
+            cout << "CPF: " << lista[i].cpf << endl;
+            
+            cout << "\n====================================================\n";
         }
     }
 };
@@ -258,12 +261,12 @@ class Assinatura : public Cliente, public Publicacoes
 
 public:
 
-    Assinatura ()
+    Assinatura () // contrutor padrao
     {
-        this->revista = "Tecnologia";
+        this->revista = "Tecnologia e Programação";
         this->ed_inicial = 1;
         this->num_assinaturas = 1;
-        this->assinante = "klysman";
+        this->assinante = "Klysman";
     }
 
     Assinatura(string revista, int ed_inicial, int num_assinaturas, string assinante)
@@ -289,10 +292,12 @@ public:
     {
         for (int i = 0; i < lista_assinatura.size(); ++i)
         {
-            cout << lista_assinatura[i].revista << endl;
-            cout << lista_assinatura[i].ed_inicial << endl;
-            cout << lista_assinatura[i].num_assinaturas << endl;
-            cout << lista_assinatura[i].assinante << endl;
+            cout << "Nome:" << lista_assinatura[i].revista << endl;
+            cout << "Edicao:" << lista_assinatura[i].ed_inicial << endl;
+            cout << "Assinatura:" << lista_assinatura[i].num_assinaturas << endl;
+            cout << "Assinante:" << lista_assinatura[i].assinante << endl;
+            
+            cout << "\n====================================================\n";
         }
     }
 
@@ -406,7 +411,7 @@ int main(int argc, char** argv)
 
     while(1)
 	{
-        cout << "Informe o que voce deseja. \n\n1 - Cadastrar cliente\n2 - Cadastrar publicacao\n3 - Cadastrar assinatura\n4 - Informacoes de cliente cadastrado\n5 - Informacoes de assinatura\n6 - Informacoes de publicacoes\n7 - Sair do Programa\n\n";
+        cout << "Informe o que voce deseja. \n\n1 - Cadastrar cliente\n2 - Cadastrar publicacao\n3 - Cadastrar assinatura\n\n\nMenu de acesso ao banco de dado:\n\n4 - Informacoes de cliente cadastrado\n5 - Informacoes de assinatura\n6 - Informacoes de publicacoes\n7 - Sair do Programa\n\n";
         cout << "Escolha: ";
         cin >> escolha;
 
@@ -437,11 +442,11 @@ int main(int argc, char** argv)
         {
             p1->imprime_publicacao(publica);
         }
+        //else if (escolha == 7)
+        //{
+			//e1->imprime_editora;
+        //}
         else if (escolha == 7)
-        {
-			e1->imprime_editora;
-        }
-        else if (escolha == 8)
         {
             cout << "Saindo do programa. Obrigado por utilizar o sistema. ";
             break;

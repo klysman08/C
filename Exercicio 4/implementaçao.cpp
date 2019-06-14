@@ -1,6 +1,7 @@
-/**Nome: Klysman Rezende Alves Vieira
-   Matricula: 2017108779
-   Exercicio 4 - UML e codigo  **/
+/**
+Nome: Klysman Rezende Alves Vieira
+Matricula: 2017108779
+Exercicio 4 - UML e codigo  **/
 
 #include <iostream>
 #include <stdio.h>
@@ -20,7 +21,7 @@ class Editora
     string nome_ed;
     string endereco_ed;
     int quantPublicacoes_ed;
-    int cnpj_ed; /**De acordo com o slide precisa ter*/
+    int cnpj_ed; 
 
 public:
     Editora()
@@ -28,7 +29,7 @@ public:
         this->nome_ed = "DCC";
         this->endereco_ed = "UFMG";
         this->quantPublicacoes_ed = 5;
-        this->cnpj_ed = 123456789; /**Aqui tambem*/
+        this->cnpj_ed = 123456789; 
     }
 
     string getnome()
@@ -46,8 +47,9 @@ public:
         return quantPublicacoes_ed;
     }
 
-    /**Ja que tem um campo para o cnpj, deve ser util ter um metodo para ler o cnpj. Nao fiz um para definir o cnpj pq imagino q isso vai ser
-       padroo e determinado no inicio do programa*/
+/**Ja que tem um campo para o cnpj, deve ser util ter um metodo para ler o cnpj. Nao fiz um para definir o cnpj pq imagino q isso vai ser
+padroo e determinado no inicio do programa*/
+
     int getcnpj()
     {
         return cnpj_ed;
@@ -62,7 +64,6 @@ public:
 };
 
 
-
 // Classe que armazena as publicaçoes desejadas pelo Usuario.
 // Tem como construtores publicaçoes padrao e outra que recebe os parametros (informacoes da publicacao) do usuario.
 
@@ -75,7 +76,7 @@ class Publicacoes
 
 public:
 
-    Publicacoes()
+    Publicacoes() //Construtor padrão caso não seja instanciado objeto com parametros
     {
         this->nome_pub = "Tecnologia";
         this->edicao_atual = 1;
@@ -105,29 +106,7 @@ public:
         cout<< "\nNome da publicacao: " << this->nome_pub << "\nEdicao atual: " << this->edicao_atual << "\nPeriodicidade: " << this->periodicidade << "\nData da ultima edicao: " << this->data_ultima_ed << "\n";
     }
 
-    //Funcoes alternativas
-
-    string getnome_pub()
-    {
-        return nome_pub;
-    }
-
-    int getedicao_atual()
-    {
-        return edicao_atual;
-    }
-
-    string getperiodicidade()
-    {
-        return periodicidade;
-    }
-
-    int getdata_ultima_edicao()
-    {
-        return data_ultima_ed;
-    }
-
-    void imprime_publicacao(const vector<Publicacoes> &lista_publicacao)  //TENTAR DEUXAR DENTRO DE CADA CLASSE ESPECIFICA PARA QUE OS ATRIBUTOS NAO PRECISEM SER PUBLICOS
+    void imprime_publicacao(const vector<Publicacoes> &lista_publicacao) // Função que imprime os atributos dos objetos instanciados via <vector>
     {
         for (int i = 0; i < lista_publicacao.size(); ++i)
         {
@@ -187,6 +166,7 @@ class Cliente
 	int idade;
 	string endereco;
 	int cpf; /**De acordo com o slide precisa ter*/
+
 public:
 
 
@@ -206,13 +186,13 @@ public:
         this->cpf = cpf;
     }
 
-    /*void atualiza_cliente(string nome, int idade, string endereco, int cpf)
+    void atualiza_cliente(string nome, int idade, string endereco, int cpf)
     {
         this->nome = nome;
         this->idade = idade;
         this->endereco = endereco;
         this->cpf = cpf;
-    }*/
+    }
 
     string getnome()
     {
@@ -228,14 +208,12 @@ public:
     {
         return endereco;
     }
-
-    /**Ja que tem um campo cpf, é interessante ter um metodo pra pegar o cpf*/
     int getcpf()
     {
         return cpf;
     }
 
-    void imprime_cliente(const vector<Cliente> &lista)  //TENTAR DEUXAR DENTRO DE CADA CLASSE ESPECIFICA PARA QUE OS ATRIBUTOS NAO PRECISEM SER PUBLICOS
+    void imprime_cliente(const vector<Cliente> &lista)  // Função que imprime os atributos dos objetos instanciados via <vector>
     {
         for (int i = 0; i < lista.size(); ++i)
         {
@@ -263,7 +241,7 @@ public:
 
     Assinatura () // contrutor padrao
     {
-        this->revista = "Tecnologia e Programa��o";
+        this->revista = "Tecnologia e Programacao";
         this->ed_inicial = 1;
         this->num_assinaturas = 1;
         this->assinante = "Klysman";
@@ -288,7 +266,7 @@ public:
 
     }
 
-    void imprime_assinatura(const vector<Assinatura> &lista_assinatura)  //TENTAR DEUXAR DENTRO DE CADA CLASSE ESPECIFICA PARA QUE OS ATRIBUTOS NAO PRECISEM SER PUBLICOS
+    void imprime_assinatura(const vector<Assinatura> &lista_assinatura)  // Funcao que imprime os atributos dos objetos instanciados via <vector>
     {
         for (int i = 0; i < lista_assinatura.size(); ++i)
         {
@@ -411,36 +389,38 @@ int main(int argc, char** argv)
 
     while(1)
 	{
-        cout << "Informe o que voce deseja. \n\n1 - Cadastrar cliente\n2 - Cadastrar publicacao\n3 - Cadastrar assinatura\n\n\nMenu de acesso ao banco de dado:\n\n4 - Informacoes de cliente cadastrado\n5 - Informacoes de assinatura\n6 - Informacoes de publicacoes\n7 - Sair do Programa\n\n";
+		cout << "\n====================================================\n";
+		cout << "====================================================\n";
+        cout << "Informe o que voce deseja. \n\n1 - Cadastrar cliente\n2 - Cadastrar publicacao\n3 - Cadastrar assinatura\n\n\nMenu de acesso ao banco de dados:\n\n4 - Informacoes de cliente cadastrado\n5 - Informacoes de assinatura\n6 - Informacoes de publicacoes\n\n\n7 - Sair do Programa\n\n";
         cout << "Escolha: ";
         cin >> escolha;
 
         if (escolha == 1)
         {
-            *c1 = s1->inscreverCliente();
-            client.push_back(*c1);
+            *c1 = s1->inscreverCliente();  // Chama a funcao na classe sistema para instanciar os objetos
+            client.push_back(*c1);		  // Armazena o objeto criado na linha de cima em uma lista do tipo vector. 
         }
         else if (escolha == 2)
         {
-            *p1 = s1->inscreverPublicacao();
-             publica.push_back(*p1);
+            *p1 = s1->inscreverPublicacao(); // Chama a funcao na classe sistema para instanciar os objetos
+             publica.push_back(*p1);		// Armazena o objeto criado na linha de cima em uma lista do tipo vector. 
         }
         else if (escolha == 3)
         {
-            *a1 = s1->inscreverAssinatura();
-            assina.push_back(*a1);
+            *a1 = s1->inscreverAssinatura(); // Chama a funcao na classe sistema para instanciar os objetos
+            assina.push_back(*a1);			// Armazena o objeto criado na linha de cima em uma lista do tipo vector. 
         }
         else if (escolha == 4)
         {
-			c1->imprime_cliente(client);
+			c1->imprime_cliente(client); 	// Imprime a lista que contem todos os Usuarios cadastrados
         }
         else if (escolha == 5)
         {
-			a1->imprime_assinatura(assina);
+			a1->imprime_assinatura(assina); // Imprime a lista que contem todos as Assinaturas cadastrados
         }
         else if (escolha == 6)
         {
-            p1->imprime_publicacao(publica);
+            p1->imprime_publicacao(publica); // Imprime a lista que contem todos as Puplicacoes cadastrados
         }
         //else if (escolha == 7)
         //{

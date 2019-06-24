@@ -257,7 +257,7 @@ public:
 
 
 
-class BilheteTeatro : public Cinema
+class BilheteTeatro : public Teatro
 {
     int valor_te;
     int codigo_te;
@@ -346,7 +346,7 @@ public:
         cout << "Informe os dados do Show que deseja\n\n\n";
         cout << "Qual o setor?";
         cin >> setor;
-        cout << "Informe a atracao: (rock, pop, kpop, axé, sertanejo, country)";
+        cout << "Informe a atracao: (rock, pop, kpop, axï¿½, sertanejo, country)";
         cin >> atracao;
         cout << "Informe a data: ";
         cin >> data;

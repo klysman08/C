@@ -36,6 +36,36 @@ public:
         this->cpf = cpf;
     }
 
+    string get_Nome()
+    {
+        return this->nome;
+    }
+
+    int get_idade()
+    {
+        return this->idade;
+    }
+
+    int get_cpf()
+    {
+        return this->cpf;
+    }
+
+    void set_Nome(string name)
+    {
+        this->nome = name;
+    }
+
+    void set_idade(int id)
+    {
+        this->idade = id;
+    }
+
+    void set_cpf(int registro)
+    {
+        this->cpf = registro;
+    }
+
     void imprime_cliente(const vector<Cliente> &lista) // Função que imprime os atributos dos objetos instanciados via <vector>
     {
         for (int i = 0; i < lista.size(); ++i)
@@ -45,6 +75,7 @@ public:
             cout << "CPF: " << lista[i].cpf << endl;
 
             cout << "\n====================================================\n";
+            
         }
     }
 };
@@ -54,19 +85,21 @@ public:
 
 class Evento
 {
-    string nome;
+
+public:  
+    string nome_ev;
     string endereco;
 
-public:
+
     Evento()
     {
-        this->nome = "Evento generico";
+        this->nome_ev = "Evento generico";
         this->endereco = "Shopping BH";
     }
 
     void imprime_evento()
     {
-        cout << this->nome << endl;
+        cout << this->nome_ev << endl;
         cout << this->endereco << endl;
     }
 };
@@ -74,34 +107,67 @@ public:
 // Classe Cinema
 // Tem como objetivo caracterizar o tipo de cinema para esse evento
 
-class Cinema
+class Cinema : public Evento
 {
+
+public:
+
     string tipo;
     string filme;
+    int sala;
     string data;
     string horario;
 
-public:
+
     Cinema() // contrutor padrao
     {
         this->tipo = "3D";
+        this->sala = 1;
         this->filme = "Vingadores";
         this->data = "janeiro";
         this->horario = "21h";
     }
 
-    Cinema(string tipo, string filme, string data, string horario)
+    Cinema(string tipo, int sala, string filme, string data, string horario)
     {
         this->tipo = tipo;
+        this->sala = sala;
         this->filme = filme;
         this->data = data;
         this->horario = horario;
     }
 
-    void imprime_filmes(const vector<Cinema> &lista_filmes) // Funcao que imprime os atributos dos objetos instanciados via <vector>
+    void imprime_cinema(const vector<Cinema> &lista)
+    {
+    	for (int i = 0; i < lista.size(); ++i)
+        {
+            cout << "Tipo: " << lista[i].tipo << endl;
+            cout << "Nome do filme: " << lista[i].filme << endl;
+            cout << "Sala: " << lista[i].sala << endl;
+            cout << "Data: " << lista[i].data << endl;
+            cout << "Horario: " << lista[i].horario << endl;
+            cout << "Nome do evento: " << lista[i].nome_ev << endl;
+
+            cout << "\n====================================================\n";
+            
+        }
+	}
+};
+
+
+class BilheteCinema : public Cinema
+{
+    int valor;
+    int codigo;
+
+    public:
+
+    void emite_bilhete_filme(const vector<Cinema> &lista_filmes) // Funcao que imprime os atributos dos objetos instanciados via <vector>
     {
         for (int i = 0; i < lista_filmes.size(); ++i)
         {
+            cout << "Nome do Evento:" << lista_filmes[i].nome_ev << endl;
+            cout << "Endereco:" << lista_filmes[i].endereco << endl;
             cout << "Tipo:" << lista_filmes[i].tipo << endl;
             cout << "Filme:" << lista_filmes[i].filme << endl;
             cout << "Data:" << lista_filmes[i].data << endl;
@@ -113,10 +179,8 @@ public:
 };
 
 // Classe sistema
-// Responsavel por receber todas as informacoes do usario e criar os objetos das classes publicacoes, clientes e assinaturas.
+// Responsavel por receber todas as informacoes do usario e criar os objetos.
 
-/**Aqui precisa ter uma classe Sistema de acordo com o slide (slide 21 da aula - Diagrama de classes).
-   Ela nao possui atributos nem construtores, somente metodos. */
 
 class Sistema : public Cliente, public Cinema
 {
@@ -152,6 +216,8 @@ public:
         cout << "Informe os dados do filme deseja\n";
         cout << "Legendado, legendado 3D, dublado, dublado 3D: ";
         cin >> tipo;
+        cout << "Informe a sala: ";
+        cin >> sala;
         cout << "Informe o nome do filme: ";
         cin >> filme;
         cout << "Informe a data desejada: ";
@@ -159,7 +225,7 @@ public:
         cout << "Informe o horario: ";
         cin >> horario;
 
-        Cinema *a1 = new Cinema(tipo, filme, data, horario);
+        Cinema *a1 = new Cinema(tipo, sala, filme, data, horario);
 
         cout << "\nOk! Seus dados foram armazenados. \n\n";
         return *a1;
@@ -176,6 +242,7 @@ int main(int argc, char **argv)
     Cliente *c1 = new Cliente();
     Evento *e1 = new Evento();
     Cinema *a1 = new Cinema();
+    BilheteCinema *b1 = new BilheteCinema();
 
     vector<Cliente> client;
     vector<Cinema> cine;
@@ -184,7 +251,7 @@ int main(int argc, char **argv)
     {
         cout << "\n====================================================\n";
         cout << "====================================================\n";
-        cout << "Informe o que voce deseja. \n\n1 - Cadastrar seus dados\n2 - Escolha o filme \n\n\nMenu de acesso ao banco de dados:\n\n3 - Informacoes de clientes cadastrado\n4 - Informacoes de filmes\n\n\n5 - Sair do Programa\n\n";
+        cout << "Informe o que voce deseja. \n\n1 - Cadastrar seus dados\n2 - Escolha o filme \n\n\nMenu de acesso ao banco de dados:\n\n3 - Informacoes de clientes cadastrado\n4 - Informacoes de filmes\n\n\n5 - Sair do Programa\n\n\n6 - Alterar cliente\n ";
         cout << "Escolha: ";
         cin >> escolha;
 
@@ -204,11 +271,33 @@ int main(int argc, char **argv)
         }
         else if (escolha == 4)
         {
-            a1->imprime_filmes(cine); // Imprime a lista que contem todos as Assinaturas cadastrados
+            b1->emite_bilhete_filme(cine); // Imprime a lista que contem todos as Assinaturas cadastrados
         }
         else if (escolha == 5)
         {
             cout << "Saindo do programa. Obrigado por utilizar o sistema. ";
+            break;
+        }
+         else if (escolha == 6)
+        {
+        	cout <<	"Escolha um cliente:\n";
+        	int i=0;
+            for(std::vector<Cliente>::iterator it = client.begin(); it != client.end(); ++it)
+            {
+                cout <<i+1<<": " << it->get_Nome() << "; \n";
+                i++;
+            }
+        	int vectorindex;
+            cin >> vectorindex;
+            cout <<	"Altera nome para:\n";
+            string novonome;
+            cin >>novonome;
+            client[vectorindex].set_Nome(novonome);
+            cout <<"Nova Lista:\n";
+            for(std::vector<Cliente>::iterator it = client.begin(); it != client.end(); ++it)
+            {
+                cout <<"Nome: " << it->get_Nome() << "; \n";
+            }
             break;
         }
         else

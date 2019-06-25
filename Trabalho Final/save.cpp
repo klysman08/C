@@ -67,19 +67,16 @@ public:
             cout << "CPF: " << lista[i].cpf << endl;
 
             cout << "\n====================================================\n";
-            
         }
     }
 };
 
-
 class Evento
 {
 
-public:  
+public:
     string nome_ev;
     string endereco;
-
 
     Evento()
     {
@@ -92,26 +89,22 @@ public:
         cout << this->nome_ev << endl;
         cout << this->endereco << endl;
     }
-    
+
     void set_nome_ev(string name_ev)
     {
         this->nome_ev = name_ev;
     }
-    
 };
-
 
 class Cinema : public Evento
 {
 
 public:
-
     string tipo;
     string filme;
     int sala;
     string data;
     string horario;
-
 
     Cinema() // contrutor padrao
     {
@@ -132,14 +125,11 @@ public:
     }
 };
 
-
-
 class BilheteCinema : public Cinema
 {
-	public:
+public:
     int valor_cine = 20;
     int codigo_cine = 45245;
-
 
     void emite_bilhete_filme(const vector<Cinema> &lista_filmes) // Funcao que imprime os atributos dos objetos instanciados via <vector>
     {
@@ -152,25 +142,21 @@ class BilheteCinema : public Cinema
             cout << "Data:" << lista_filmes[i].data << endl;
             cout << "Horario:" << lista_filmes[i].horario << endl;
             //cout << "Valor:" << lista_filmes[i].valor_cine << endl;
-            //cout << "Codigo:" << lista_filmes[i].codigo_cine << endl;            
+            //cout << "Codigo:" << lista_filmes[i].codigo_cine << endl;
 
             cout << "\n====================================================\n";
         }
     }
 };
 
-
-
 class Show : public Evento
 {
 
 public:
-
     int setor;
     string atracao;
     string data;
     string horario;
-
 
     Show() // contrutor padrao
     {
@@ -187,19 +173,13 @@ public:
         this->data = data;
         this->horario = horario;
     }
-
 };
-
-
 
 class BilheteShow : public Show
 {
-	public:
-		
+public:
     int valor_sw = 20;
     int codigo_sw = 248742;
-
-    
 
     void emite_bilhete_show(const vector<Show> &lista_show) // Funcao que imprime os atributos dos objetos instanciados via <vector>
     {
@@ -211,7 +191,7 @@ class BilheteShow : public Show
             cout << "Atracao:" << lista_show[i].atracao << endl;
             cout << "Data:" << lista_show[i].data << endl;
             cout << "Horario:" << lista_show[i].horario << endl;
-            
+
             //cout << "Valor:" << lista_show[i].valor_sw << endl;
             //cout << "Codigo:" << lista_show[i].codigo_sw << endl;
 
@@ -220,20 +200,15 @@ class BilheteShow : public Show
     }
 };
 
-
-
-
 class Teatro : public Evento
 {
 
 public:
-
     string tipo;
     string nome;
     int sala;
     string data;
     string horario;
-
 
     Teatro() // contrutor padrao
     {
@@ -252,19 +227,15 @@ public:
         this->data = data;
         this->horario = horario;
     }
-
 };
-
-
 
 class BilheteTeatro : public Teatro
 {
     int valor_te;
     int codigo_te;
 
-    public:
-
-        void emite_bilhete_show(const vector<Teatro> &lista_teatro) // Funcao que imprime os atributos dos objetos instanciados via <vector>
+public:
+    void emite_bilhete_show(const vector<Teatro> &lista_teatro) // Funcao que imprime os atributos dos objetos instanciados via <vector>
     {
         for (int i = 0; i < lista_teatro.size(); ++i)
         {
@@ -275,7 +246,7 @@ class BilheteTeatro : public Teatro
             cout << "Sala:" << lista_teatro[i].sala << endl;
             cout << "Data:" << lista_teatro[i].data << endl;
             cout << "Horario:" << lista_teatro[i].horario << endl;
-            
+
             //cout << "Valor:" << lista_show[i].valor_te << endl;
             //cout << "Codigo:" << lista_show[i].codigo_te << endl;
 
@@ -283,9 +254,6 @@ class BilheteTeatro : public Teatro
         }
     }
 };
-
-
-
 
 class Sistema : public Cliente, public Cinema
 {
@@ -309,7 +277,7 @@ public:
         cout << "\nOk! Seus dados foram armazenados. \n\n";
         return *c1;
     }
-    
+
     Cinema inscreverFilme()
     {
         string tipo;
@@ -342,7 +310,6 @@ public:
         string data;
         string horario;
 
-
         cout << "Informe os dados do Show que deseja\n\n\n";
         cout << "Qual o setor?";
         cin >> setor;
@@ -351,22 +318,20 @@ public:
         cout << "Informe a data: ";
         cin >> data;
         cout << "Informe o horario: ";
-		cin >> horario;
+        cin >> horario;
         Show *b1 = new Show(setor, atracao, data, horario);
 
         cout << "\nOk! Seus dados foram armazenados. \n\n";
         return *b1;
     }
-    
-    
-	Teatro inscreverTeatro()
+
+    Teatro inscreverTeatro()
     {
         string tipo;
         string nome;
         int sala;
         string data;
         string horario;
-
 
         cout << "Informe os dados do Teatro que deseja\n\n\n";
         cout << "Qual o tipo? (musical, opera, filarmonica) ";
@@ -385,33 +350,36 @@ public:
         cout << "\nOk! Seus dados foram armazenados. \n\n";
         return *t1;
     }
-
-
 };
 
-
-
 int main()
-{    
-	Sistema *s1 = new Sistema();
-	Evento *e1 = new Evento();
+{
+    // Classe sistema responsável por gerênciar, atravez de metodos, as outras classes do sistima.
+    Sistema *s1 = new Sistema();
+
+    // Classes para instanciar os objetos do tipo Cliente e super class Evento.
+    Evento *e1 = new Evento();
     Cliente *c1 = new Cliente();
+
     Cinema *a1 = new Cinema();
     Show *b1 = new Show();
     Teatro *t1 = new Teatro();
+
+    // Listas para armazenar de maneira sequencial as informações do usario no processo de compra do ingresso.
 
     vector<Cliente> client;
     vector<Cinema> cine;
     vector<Show> show;
     vector<Teatro> teatro;
-    
-	int escolha;
-	int escolhe_evento;
-	int escolhe_pagamento;
+
+    // Variaveis responsasveis para genrenciar a interface do usario.
+    int escolha;
+    int escolhe_evento;
+    int escolhe_pagamento;
 
     while (1)
     {
-        cout << "Pressione o botao 1 se voce deseja iniciar o processo de compras.\n";
+        cout << "Bem vindo ao sistema para compra de ingressos.\n\nTemos a venda ingressos para Cinema, Shows e Teatro.\nPressione o botao 1 se voce deseja iniciar o processo de compras.\n";
         cin >> escolha;
 
         if (escolha == 1)
@@ -421,68 +389,67 @@ int main()
             *c1 = s1->inscreverCliente();
             client.push_back(*c1);
 
-            cout << "Informe agora qual o tipo de evento que voce deseja: ";
+            cout << "Ok! Informe agora qual o tipo de evento que voce deseja: ";
             cout << "\n1 - Cinema\n2 - Show\n3 - Teatro\n9 - Sair do processo de compras\n";
             cin >> escolhe_evento;
             //e1->set_nome_ev(string escolhe_evento);
-            
+
             if (escolhe_evento == 1)
             {
-            	e1->set_nome_ev("Cinema");
+                e1->set_nome_ev("Cinema");
                 *a1 = s1->inscreverFilme(); // Chama a funcao na classe sistema para instanciar os objetos
-           		cine.push_back(*a1);        // Armazena o objeto criado na linha de cima em uma lista do tipo vector.
+                cine.push_back(*a1);        // Armazena o objeto criado na linha de cima em uma lista do tipo vector.
             }
 
             if (escolhe_evento == 2)
             {
-            	e1->set_nome_ev("Show");
+                e1->set_nome_ev("Show");
                 *b1 = s1->inscreverShow(); // Chama a funcao na classe sistema para instanciar os objetos
-           		show.push_back(*b1);        // Armazena o objeto criado na linha de cima em uma lista do tipo vector.
+                show.push_back(*b1);       // Armazena o objeto criado na linha de cima em uma lista do tipo vector.
             }
 
             if (escolhe_evento == 3)
             {
                 e1->set_nome_ev("Teatro");
                 *t1 = s1->inscreverTeatro(); // Chama a funcao na classe sistema para instanciar os objetos
-           		teatro.push_back(*t1);        // Armazena o objeto criado na linha de cima em uma lista do tipo vector.
+                teatro.push_back(*t1);       // Armazena o objeto criado na linha de cima em uma lista do tipo vector.
             }
 
             if (escolhe_evento == 4)
             {
-                
             }
-            
+
             cout << "\nDados salvos. Escolha o metodo de pagamento:\n1 - Dinheiro\n2 - Cartao de credito\n3 - Cartao de debito";
             cin >> escolhe_pagamento;
-            
-			if (escolhe_pagamento == 1)
+
+            if (escolhe_pagamento == 1)
             {
-            	//paga_dinheiro();
-			}
-            
+                //paga_dinheiro();
+            }
+
             if (escolhe_pagamento == 2)
             {
-            	//paga_credito();
-			}
-			
-			if (escolhe_pagamento == 3)
+                //paga_credito();
+            }
+
+            if (escolhe_pagamento == 3)
             {
-            	//paga_debito();
-			}
-			
-			cout << "\nPagamento realizado. Imprimindo bilhetes.";
-			//imprime_pagamento();
-		}
-        
-		else if (escolha == 9)
+                //paga_debito();
+            }
+
+            cout << "\nPagamento realizado. Confirme seus informações antes de Emitir o bilhete.";
+            //imprime_pagamento();
+        }
+
+        else if (escolha == 9)
         {
-            cout << "Comando para finalizar o programa iniciado. Finalizando...";
+            cout << "Comando para finalizar o programa iniciado. Finalizando...\nObrigado!";
             return 0;
         }
-        
-		else
+
+        else
         {
-			cout << "Escolha invalida. Tente novamente. \n";
-        }       
+            cout << "Escolha invalida. Tente novamente. \n";
+        }
     }
 }

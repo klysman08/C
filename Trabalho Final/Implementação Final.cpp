@@ -285,8 +285,8 @@ public:
         string data;
         string horario;
 
-        cout << "Informe os dados do Filme que deseja\n\n\n";
-        cout << "Legendado, legendado 3D, dublado, dublado 3D: ";
+        cout << "Informe os dados do Filme que deseja\n\n";
+        cout << "Legendado, Legendado 3D, Dublado, Dublado 3D: ";
         cin >> tipo;
         cout << "Informe a sala: ";
         cin >> sala;
@@ -310,10 +310,10 @@ public:
         string data;
         string horario;
 
-        cout << "Informe os dados do Show que deseja\n\n\n";
-        cout << "Qual o setor?";
+        cout << "Informe os dados do Show que deseja\n\n";
+        cout << "Qual o setor? ";
         cin >> setor;
-        cout << "Informe a atracao: (rock, pop, kpop, ax�, sertanejo, country)";
+        cout << "Informe a atracao: (rock, pop, kpop, axe, sertanejo, country): ";
         cin >> atracao;
         cout << "Informe a data: ";
         cin >> data;
@@ -333,12 +333,12 @@ public:
         string data;
         string horario;
 
-        cout << "Informe os dados do Teatro que deseja\n\n\n";
-        cout << "Qual o tipo? (musical, opera, filarmonica) ";
+        cout << "Informe os dados do Teatro que deseja\n\n";
+        cout << "Qual o tipo? (musical, opera, filarmonica): ";
         cin >> tipo;
         cout << "Informe o nome da peca desejada: ";
         cin >> nome;
-        cout << "Informe a sala da peca: ";
+        cout << "Informe o numero da sala: ";
         cin >> sala;
         cout << "Informe a data: ";
         cin >> data;
@@ -389,7 +389,7 @@ int main()
             *c1 = s1->inscreverCliente();
             client.push_back(*c1);
 
-            cout << "Ok! Informe agora qual o tipo de evento que voce deseja: ";
+            cout << "Informe agora qual o tipo de evento que voce deseja: ";
             cout << "\n1 - Cinema\n2 - Show\n3 - Teatro\n9 - Sair do processo de compras\n";
             cin >> escolhe_evento;
             //e1->set_nome_ev(string escolhe_evento);
@@ -415,11 +415,18 @@ int main()
                 teatro.push_back(*t1);       // Armazena o objeto criado na linha de cima em uma lista do tipo vector.
             }
 
-            if (escolhe_evento == 4)
-            {
-            }
+            // Sessão do programa para o pagamento;
 
-            cout << "\nDados salvos. Escolha o metodo de pagamento:\n1 - Dinheiro\n2 - Cartao de credito\n3 - Cartao de debito";
+            /* Se o pagamento for em dinheiro ele deve informar o valor dado em pagamento e a máquina calcula o troco, se houver. 
+             * Se for cartão de crédito, o usuário deve fornecer o número do cartão e a bandeira Visa, Mastercard, etc. 
+             * A máquina deve verificar a validade dos dados e informar se o pagamento foi aceito, ou não. 
+             * O procedimento de verificação deverá usar um sorteio para recusar alguns pagamentos, simulando uma situação real.  
+             * Para cartão de debito também deverão ser fornecidos a bandeira e o número. Um procedimento deve verificar se há 
+             * saldo na conta para pagamento e um, em cada cinco pagamentos aceitos, deverá ser recusado. 
+             * Pode ser ainda que o usuário tenha direito a bilhetes de cortesia. Neste caso, após optar por esta modalidade,
+             * ele deverá fornecer o seu CPF, e um procedimento de verificação poderá atender até dois pedidos a cada quinze solicitações. */
+
+            cout << "\nDados salvos. Escolha o metodo de pagamento:\n1 - Dinheiro\n2 - Cartao de credito\n3 - Cartao de debito\n";
             cin >> escolhe_pagamento;
 
             if (escolhe_pagamento == 1)
@@ -437,7 +444,9 @@ int main()
                 //paga_debito();
             }
 
-            cout << "\nPagamento realizado. Confirme seus informações antes de Emitir o bilhete.";
+            /* Sessão para o usuario validar as informações que irão constar no bilhete e silicitar a impressão do mesmo. */
+
+            cout << "\nPagamento realizado. Confirme seus informações antes de emitir o bilhete.";
             //imprime_pagamento();
         }
 

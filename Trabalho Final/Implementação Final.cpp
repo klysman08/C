@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <vector>
-#include <ctime>>
-#include <cstdlib>
+#include <ctime>> //para o sorteio e regar o código de validacao
+#include <cstdlib> //para o sorteio e regar o código de validacao
 
 using namespace std;
 

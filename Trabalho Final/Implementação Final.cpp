@@ -560,6 +560,33 @@ int main()
                     emissao_bilhete();
                 }
             }
+
+            /* // Funcao par alterar dados do usuario
+
+            {
+        	cout <<	"Escolha um cliente:\n";
+        	int i=0;
+            for(std::vector<Cliente>::iterator it = client.begin(); it != client.end(); ++it)
+            {
+                cout <<i+1<<": " << it->get_Nome() << "; \n";
+                i++;
+            }
+        	int vectorindex;
+            cin >> vectorindex;
+            cout <<	"Altera nome para:\n";
+            string novonome;
+            cin >>novonome;
+            client[vectorindex].set_Nome(novonome);
+            cout <<"Nova Lista:\n";
+            for(std::vector<Cliente>::iterator it = client.begin(); it != client.end(); ++it)
+            {
+                cout <<"Nome: " << it->get_Nome() << "; \n";
+            }
+            break;
+
+            */
+
+
             /* Se for cartão de crédito, o usuário deve fornecer o número do cartão e a bandeira Visa, Mastercard, etc.
              * A máquina deve verificar a validade dos dados e informar se o pagamento foi aceito, ou não.
              * O procedimento de verificação deverá usar um sorteio para recusar alguns pagamentos, simulando uma situação real.*/

@@ -144,7 +144,7 @@ public:
             cout << "Filme:" << lista_filmes[i].filme << endl;
             cout << "Data:" << lista_filmes[i].data << endl;
             cout << "Horario:" << lista_filmes[i].horario << endl;
-            cout << "Valor:" << this->valor_cine << endl;
+            cout << "Valor:" << this->valor_cine << endl << ",00 R$";
             //cout << "Codigo:" << this->codigo_cine << endl;
 
             cout << "\n====================================================\n";
@@ -162,14 +162,14 @@ public:
     {
         for (int i = 0; i < lista_filmes.size(); ++i)
         {
-            cout << "Nome do Evento:" << lista_filmes[i].nome_ev << endl;
-            cout << "Endereco:" << lista_filmes[i].endereco << endl;
-            cout << "Tipo:" << lista_filmes[i].tipo << endl;
-            cout << "Filme:" << lista_filmes[i].filme << endl;
-            cout << "Data:" << lista_filmes[i].data << endl;
-            cout << "Horario:" << lista_filmes[i].horario << endl;
-            cout << "Valor:" << this->valor_cine << endl;
-            cout << "Codigo:" << this->codigo_cine << endl;
+            cout << "Nome do Evento:................................" << lista_filmes[i].nome_ev << endl;
+            cout << "Endereco:......................................" << lista_filmes[i].endereco << endl;
+            cout << "Tipo:.........................................." << lista_filmes[i].tipo << endl;
+            cout << "Filme:........................................." << lista_filmes[i].filme << endl;
+            cout << "Data:.........................................." << lista_filmes[i].data << endl;
+            cout << "Horario:......................................." << lista_filmes[i].horario << endl;
+            cout << "Valor:........................................." << this->valor_cine << ",00 R$" << endl;
+            cout << "Codigo de validacao:..........................." << this->codigo_cine << endl;
 
             cout << "\n====================================================\n";
         }
@@ -218,14 +218,14 @@ public:
     {
         for (int i = 0; i < lista_show.size(); ++i)
         {
-            cout << "Nome do Evento:" << lista_show[i].nome_ev << endl;
-            cout << "Endereco:" << lista_show[i].endereco << endl;
-            cout << "Setor:" << lista_show[i].setor << endl;
-            cout << "Atracao:" << lista_show[i].atracao << endl;
-            cout << "Data:" << lista_show[i].data << endl;
-            cout << "Horario:" << lista_show[i].horario << endl;
-            cout << "Valor:" << this->valor_sw << endl;
-            cout << "Codigo:" << this->codigo_sw << endl;
+            cout << "Nome do Evento:........................................." << lista_show[i].nome_ev << endl;
+            cout << "Endereco:..............................................." << lista_show[i].endereco << endl;
+            cout << "Setor:.................................................." << lista_show[i].setor << endl;
+            cout << "Atracao:................................................" << lista_show[i].atracao << endl;
+            cout << "Data:..................................................." << lista_show[i].data << endl;
+            cout << "Horario:................................................" << lista_show[i].horario << endl;
+            cout << "Valor:.................................................." << this->valor_sw << ",00 R$" << endl;
+            cout << "Codigo de validacao:...................................." << this->codigo_sw << endl;
 
             cout << "\n====================================================\n";
         }
@@ -276,15 +276,15 @@ public:
         for (int i = 0; i < lista_teatro.size(); ++i)
         {
 
-            cout << "Nome do Evento:" << lista_teatro[i].nome_ev << endl;
-            cout << "Endereco:" << lista_teatro[i].endereco << endl;
-            cout << "Tipo:" << lista_teatro[i].tipo << endl;
-            cout << "Nome:" << lista_teatro[i].nome << endl;
-            cout << "Sala:" << lista_teatro[i].sala << endl;
-            cout << "Data:" << lista_teatro[i].data << endl;
-            cout << "Horario:" << lista_teatro[i].horario << endl;
-            cout << "Valor:" << this->valor_te << endl;
-            cout << "Codigo:" << this->codigo_te << endl;
+            cout << "Nome do Evento:..........................................." << lista_teatro[i].nome_ev << endl;
+            cout << "Endereco:................................................." << lista_teatro[i].endereco << endl;
+            cout << "Tipo:....................................................." << lista_teatro[i].tipo << endl;
+            cout << "Nome:....................................................." << lista_teatro[i].nome << endl;
+            cout << "Sala:....................................................." << lista_teatro[i].sala << endl;
+            cout << "Data:....................................................." << lista_teatro[i].data << endl;
+            cout << "Horario:.................................................." << lista_teatro[i].horario << endl;
+            cout << "Valor:...................................................." << this->valor_te << ",00 R$" << endl;
+            cout << "Codigo de validacao:......................................" << this->codigo_te << endl;
 
             cout << "\n====================================================\n";
         }
@@ -490,7 +490,7 @@ int main()
             {
                 if (escolhe_evento == 1)
                 {
-                    cout << "O valor para o cinema eh: " << a1->getvalor();
+                    cout << "O valor para o cinema eh: " << a1->getvalor() << ",00 R$";
                     cout << "\nDigite o valor a ser pago: ";
                     cin >> valor_cine;
 
@@ -507,14 +507,14 @@ int main()
 
                     }
 
-                    cout << "\nConfirme suas informacoes antes de emitir o bilhete.\n\n";
+                    cout << "\n\n\nConfirme suas informacoes antes de emitir o bilhete.\n\n";
                     aa1->emite_bilhete_filme(cine);
                     emissao_bilhete();
                 }
 
                 if (escolhe_evento == 2)
                 {
-                    cout << "O valor para o show eh: " << b1->getvalor();
+                    cout << "O valor para o show eh: " << b1->getvalor() << ",00 R$";
                     cout << "\nDigite o valor a ser pago: ";
                     cin >> valor_show;
 
@@ -531,14 +531,14 @@ int main()
 
                     }
 
-                    cout << "\nConfirme suas informacoes antes de emitir o bilhete.\n\n";
+                    cout << "\n\n\nConfirme suas informacoes antes de emitir o bilhete.\n\n";
                     bb1->emite_bilhete_show(show);
                     emissao_bilhete();
                 }
 
                 if (escolhe_evento == 3)
                 {
-                    cout << "O valor para o cinema eh: " << t1->getvalor();
+                    cout << "O valor para o cinema eh: " << t1->getvalor() << ",00 R$";
                     cout << "\nDigite o valor a ser pago: ";
                     cin >> valor_teatro;
 
@@ -555,7 +555,7 @@ int main()
 
                     }
 
-                    cout << "\nConfirme suas informacoes antes de emitir o bilhete.\n\n";
+                    cout << "\n\n\nConfirme suas informacoes antes de emitir o bilhete.\n\n";
                     tt1->emite_bilhete_teatro(teatro);
                     emissao_bilhete();
                 }
@@ -566,11 +566,11 @@ int main()
             else if (escolhe_pagamento == 2)
             {
                 if (escolhe_evento == 1)
-                    cout << "O valor do bilhete para o cinema eh: " << a1->getvalor();
+                    cout << "O valor do bilhete para o cinema eh: " << a1->getvalor() << ",00 R$";
                 else if (escolhe_evento == 2)
-                    cout << "O valor do bilhete para o show eh: " << b1->getvalor();
+                    cout << "O valor do bilhete para o show eh: " << b1->getvalor() << ",00 R$";
                 else if (escolhe_evento == 3)
-                    cout << "O valor do bilhete para o teatro eh: " << t1->getvalor();
+                    cout << "O valor do bilhete para o teatro eh: " << t1->getvalor() << ",00 R$";
 
                 cout << "\nInsira o numero do cartao: ";
                 cin >> num_cartao;
@@ -580,7 +580,7 @@ int main()
                 if ((rand()%15)+1 > 2) // Processo para gerar um numero aleatorio entre 1 e 15. Caso seja maior que 2
                                        // (cerca de 90% das vezes), o processo é concluido
                 {
-                    cout << "Cartao validado com sucesso. Pagamento realizado. \nConfirme suas informacoes antes de emitir o bilhete.\n\n";
+                    cout << "\n\n\nCartao validado com sucesso. Pagamento realizado. \nConfirme suas informacoes antes de emitir o bilhete.\n\n";
 
                     if (escolhe_evento == 1)
                     {
@@ -608,11 +608,11 @@ int main()
             else if (escolhe_pagamento == 3)
             {
                 if (escolhe_evento == 1)
-                    cout << "O valor do bilhete para o cinema eh: " << a1->getvalor();
+                    cout << "O valor do bilhete para o cinema eh: " << a1->getvalor() << ",00 R$";
                 else if (escolhe_evento == 2)
-                    cout << "O valor do bilhete para o show eh: " << b1->getvalor();
+                    cout << "O valor do bilhete para o show eh: " << b1->getvalor() << ",00 R$";
                 else if (escolhe_evento == 3)
-                    cout << "O valor do bilhete para o teatro eh: " << t1->getvalor();
+                    cout << "O valor do bilhete para o teatro eh: " << t1->getvalor() << ",00 R$";
 
 
                 cout << "\nInsira o numero do cartao: ";

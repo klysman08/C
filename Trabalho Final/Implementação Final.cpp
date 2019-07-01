@@ -213,7 +213,7 @@ public:
 class BilheteShow : public Show
 {
 public:
-    int codigo_sw = (rand() % 10000000000) + 1; // Gera o codigo de validacao
+    int codigo_sw = (rand() % 100000000000) + 1; // Gera o codigo de validacao
 
     void emite_bilhete_show(const vector<Show> &lista_show) // Funcao que imprime os atributos dos objetos instanciados via <vector>
     {
@@ -292,7 +292,7 @@ public:
     }
 };
 
-class Sistema : public Cliente, public Cinema
+class Sistema : public Cliente
 {
 public:
     Cliente inscreverCliente()
